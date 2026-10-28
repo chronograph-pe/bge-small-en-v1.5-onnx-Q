@@ -1,9 +1,9 @@
 MIT License
 
 The model BAAI/bge-small-en-v1.5 is released under the MIT License by the
-Beijing Academy of Artificial Intelligence (BAAI). The quantized ONNX port
-mirrored here (Qdrant/bge-small-en-v1.5-onnx-Q) is published by Qdrant under
-the MIT License, as declared on its Hugging Face model card.
+Beijing Academy of Artificial Intelligence (BAAI). The ONNX export mirrored
+here was distributed by Qdrant as part of fastembed; Qdrant's own Hugging Face
+port of the same model is published under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

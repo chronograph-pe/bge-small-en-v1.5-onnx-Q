@@ -1,35 +1,16 @@
----
-license: mit
-pipeline_tag: sentence-similarity
----
+# fast-bge-small-en-v1.5 (fp32 ONNX)
 
-Quantized ONNX port of [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) for text classification and similarity searches.
+The fastembed model `fast-bge-small-en-v1.5` that Chronograph's Grand server
+(Mastra Factory) bakes into its image for Recall. It is an fp32 ONNX export of
+[BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5),
+384-dimension embeddings.
 
-### Usage
+`model_optimized.onnx` (132,883,455 bytes) is over GitHub's per-file limit, so
+it lives on the [`fp32-2023-10-16` release](../../releases/tag/fp32-2023-10-16)
+with every other model file. The files in this tree are the same bytes, kept
+for review. Verify a download with `shasum -a 256 -c SHA256SUMS`.
 
-Here's an example of performing inference using the model with [FastEmbed](https://github.com/qdrant/fastembed).
-
-```py
-from fastembed import TextEmbedding
-
-documents = [
-    "You should stay, study and sprint.",
-    "History can only prepare us to be surprised yet again.",
-]
-
-model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
-embeddings = list(model.embed(documents))
-
-# [
-#     array([
-#         0.00611658, 0.00068912, -0.0203846, ..., -0.01751488, -0.01174267,
-#         0.01463472
-#     ],
-#           dtype=float32),
-#     array([
-#         0.00173448, -0.00329958, 0.01557874, ..., -0.01473586, 0.0281806,
-#         -0.00448205
-#     ],
-#           dtype=float32)
-# ]
-```
+**Do not swap this for another export.** Recall's stored vectors were produced
+by these exact weights; a different file (including Qdrant's quantized
+`Qdrant/bge-small-en-v1.5-onnx-Q` on Hugging Face) gives different vectors and
+silently degrades search. Changing it means re-embedding. See PROVENANCE.md.
