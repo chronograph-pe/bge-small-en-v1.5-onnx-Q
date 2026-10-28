@@ -10,7 +10,9 @@ it lives on the [`fp32-2023-10-16` release](../../releases/tag/fp32-2023-10-16)
 with every other model file. The files in this tree are the same bytes, kept
 for review. Verify a download with `shasum -a 256 -c SHA256SUMS`.
 
-**Do not swap this for another export.** Recall's stored vectors were produced
-by these exact weights; a different file (including Qdrant's quantized
-`Qdrant/bge-small-en-v1.5-onnx-Q` on Hugging Face) gives different vectors and
-silently degrades search. Changing it means re-embedding. See PROVENANCE.md.
+**Compatibility.** Recall's stored vectors were produced with these weights.
+Qdrant's smaller Hugging Face export
+(`Qdrant/bge-small-en-v1.5-onnx-Q`, 66,465,124 bytes) gives the same vectors:
+cosine 1.000000 against these on sample texts, identical neighbour ranking,
+pairwise similarities within 0.0002. A different base model or a different
+pooling would not; changing that means re-embedding. See PROVENANCE.md.

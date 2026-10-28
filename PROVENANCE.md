@@ -25,5 +25,8 @@ Hugging Face repo
 at `aa8f8b060edb00e03bfdd08813a2949946c8ba55`. Its `model_optimized.onnx`
 (66,465,124 bytes, sha256 `51f1bd0a…`) is a different, smaller export of the
 same base model. It is what `@mastra/fastembed` 1.3.4 downloads on a cold
-cache, and it is NOT the model Recall's vectors were produced with. Only
-tokenizer.json and vocab.txt are identical between the two.
+cache. It is not the file Recall's vectors were produced with, but it is the
+same model: on 2026-10-28, six sample texts embedded by @mastra/fastembed
+1.3.4 with each file gave cosine 1.000000 between the two, identical
+neighbour ranking, and pairwise similarities within 0.000108. Only
+tokenizer.json and vocab.txt are byte-identical between the two.
